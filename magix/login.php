@@ -20,36 +20,29 @@
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
-
-              <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-              <p class="text-white-50 mb-5">Please enter your login and password!</p>
-
+              <h2 class="fw-bold mb-2 text-uppercase">Magix</h2>
+              <p class="text-white-50 mb-5">Veuillez entrer vos informations de connexion!</p>
+            <form action="" method="post">
               <div class="form-outline form-white mb-4">
-                <input type="email" id="typeEmailX" class="form-control form-control-lg" />
-                <label class="form-label" for="typeEmailX">Email</label>
+                  <input type="username" id="username" class="form-control form-control-lg" name="username" />
+                  <label class="form-label" for="username">adresse courriel</label>
+                </div>
+
+                  <div class="form-outline form-white mb-4">
+                    <input type="password" id="typePasswordX" class="form-control form-control-lg" name="pwd" />
+                    <label class="form-label" for="typePasswordX">mot de passe</label>
+                  </div>
+
+                  <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Mot de passe oublié?</a></p>
+
+                  <button class="btn btn-outline-light btn-lg px-5" type="submit">Connexion</button>
+
               </div>
-
-              <div class="form-outline form-white mb-4">
-                <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                <label class="form-label" for="typePasswordX">Password</label>
-              </div>
-
-              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-
-              <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
-
-              <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
-                <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
-              </div>
-
-            </div>
-
+            </form>  
             <div>
-              <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
+              <p class="mb-0">Pas de compte ? <a href="#!" class="text-white-50 fw-bold">Identification</a>
               </p>
-        </div>
-    </div>    
+            </div>
+          </div>    
 </body>
 </html>
