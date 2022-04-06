@@ -1,3 +1,9 @@
+<?php
+	require_once("action/LoginAction.php");
+
+	$action = new LoginAction();
+	$data = $action->execute();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,10 +28,17 @@
             <div class="mb-md-5 mt-md-4 pb-5">
               <h2 class="fw-bold mb-2 text-uppercase">Magix</h2>
               <p class="text-white-50 mb-5">Veuillez entrer vos informations de connexion!</p>
+              <?php
+                if ($data["hasConnectionError"]) {
+                  ?>
+                  <p class="text-white-50 mb-5"><strong>Erreur : </strong>Connexion erronée</p>
+                  <?php
+                }
+              ?>
             <form action="" method="post">
               <div class="form-outline form-white mb-4">
                   <input type="username" id="username" class="form-control form-control-lg" name="username" />
-                  <label class="form-label" for="username">adresse courriel</label>
+                  <label class="form-label" for="username">nom d'usager</label>
                 </div>
 
                   <div class="form-outline form-white mb-4">
@@ -40,7 +53,7 @@
               </div>
             </form>  
             <div>
-              <p class="mb-0">Pas de compte ? <a href="#!" class="text-white-50 fw-bold">Identification</a>
+              <p class="mb-0">Pas de compte ? <a href="https://magix.apps-de-cours.com/server/#/signup" class="text-white-50 fw-bold">Identification</a>
               </p>
             </div>
           </div>    

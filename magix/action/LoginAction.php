@@ -25,6 +25,7 @@
                     // Pour voir les informations retournées : var_dump($result);exit;
                     $key = $result->key;
                     var_dump($result);
+                    header("location: lobby.php");
                     exit;
                 }
 
