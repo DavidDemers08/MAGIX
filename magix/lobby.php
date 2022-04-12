@@ -43,8 +43,6 @@
       id="navbarCenteredExample"
     >
       <!-- Left links -->
-      <div class=""></div>
-      <span class="navbar-brand fixed-left mb-0 h1">Navbar</span>
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="lobby.php">Lobby</a>
@@ -55,6 +53,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Jouer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Changer de deck</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="?logout=true">Quitter</a>
