@@ -1,3 +1,4 @@
+
 <?php
 	require_once("action/CommonAction.php");
 
@@ -23,14 +24,15 @@
                 }
                 else {
                     // Pour voir les informations retournées : var_dump($result);exit;
-                    $key = $result->key;
-                    var_dump($result);
+                    $_SESSION["key"] = $result->key;
+                    $_SESSION["usager"] = $result->username;
+                    $_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
                     header("location: lobby.php");
                     exit;
                 }
 
 			}
 
-			return compact("hasConnectionError");
+			return compact("hasConnectionError","key");
 		}
 	}
