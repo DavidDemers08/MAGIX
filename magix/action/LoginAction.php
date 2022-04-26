@@ -33,6 +33,6 @@
 
 			}
 
-			return compact("hasConnectionError","key");
+			return compact("hasConnectionError");
 		}
 	}
