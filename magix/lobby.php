@@ -3,6 +3,7 @@
 
 	$action = new LobbyAction();
 	$data = $action->execute();
+
     
 ?>
 
@@ -21,48 +22,17 @@
     <title>LobbyMagix</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!-- Container wrapper -->
-  <div class="container-fluid">
-    <!-- Toggle button -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-mdb-toggle="collapse"
-      data-mdb-target="#navbarCenteredExample"
-      aria-controls="navbarCenteredExample"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Collapsible wrapper -->
-    <div
-      class="collapse navbar-collapse justify-content-center"
-      id="navbarCenteredExample"
-    >
-      <!-- Left links -->
-      <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="lobby.php">Lobby</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pratique</a>
-        </li>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Jouer</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Changer de deck</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="?logout=true">Quitter</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+<nav>
+<ul>
+  <li style="float:left"><a class="active">Bienvenue <?= $data["usager"] ?></a></li>
+  
+  <li><a href="?logout=true">déconnexion</a></li>
+  <li><a href="">Changer de deck</a></li>
+  <li><a href="">Pratiquer</a></li>
+  <li><a href="">Jouer</a></li>
+  <li><a href="">Lobby</a></li>
+  
+</ul>
 </nav>
 <div class="flex">
     <div class="chat">
