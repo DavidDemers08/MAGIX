@@ -24,8 +24,8 @@
                 }
                 else {
                     // Pour voir les informations retournées : var_dump($result);exit;
-                    $_SESSION["cle"] = $result->key;
-                    $_SESSION["usager"] = $result->username;
+                    $_SESSION["key"] = $result->key;
+                    $_SESSION["username"] = $data["username"];
                     $_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
                     header("location: lobby.php");
                     exit;

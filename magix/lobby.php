@@ -19,15 +19,16 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.css"
         rel="stylesheet"
     />
+    <script src="js/javascript.js" defer></script>
     <title>LobbyMagix</title>
 </head>
 <body>
 <nav>
 <ul>
-  <li style="float:left"><a class="active">Bienvenue <?= $data["usager"] ?></a></li>
+  <li style="float:left"><a class="active">Bienvenue <?= $data["username"] ?></a></li>
   
   <li><a href="?logout=true">déconnexion</a></li>
-  <li><a href="">Changer de deck</a></li>
+  <li id="deckchange"><a href="">Changer de deck</a></li>
   <li><a href="">Pratiquer</a></li>
   <li><a href="">Jouer</a></li>
   <li><a href="">Lobby</a></li>
@@ -37,7 +38,7 @@
 <div class="flex">
     <div class="chat">
         <iframe style="width: 1000px;height:240px;" 
-                src="https://magix.apps-de-cours.com/server/#/chat/<?= $data["cle"] ?>">
+                src="https://magix.apps-de-cours.com/server/#/chat/<?=$data["key"]?>">
         </iframe>
     </div>
 </div>

@@ -31,9 +31,9 @@
 
             // Design pattern : Template method
             $data = $this->executeAction();
-            $data["usager"] = $_SESSION["usager"] ?? "Invité";
+            $data["username"] = $_SESSION["username"] ?? "Invité";
             $data["isSignedIn"] = $_SESSION["visibility"] > CommonAction::$VISIBILITY_PUBLIC;
-            $data["cle"] = $_SESSION["cle"];
+            $data["key"] = $_SESSION["key"];
 
 
             return $data;
