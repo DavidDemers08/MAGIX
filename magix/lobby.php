@@ -37,7 +37,7 @@
 <div class="flex">
     <div class="chat">
         <iframe style="width: 1000px;height:240px;" 
-                src="https://magix.apps-de-cours.com/server/#/chat/<?= $data["key"] ?>">
+                src="https://magix.apps-de-cours.com/server/#/chat/<?= $data["cle"] ?>">
         </iframe>
     </div>
 </div>
