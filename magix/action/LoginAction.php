@@ -10,6 +10,7 @@
 
 		protected function executeAction() {
 			$hasConnectionError = false;
+            
 
 			if (isset($_POST["username"])) {
 

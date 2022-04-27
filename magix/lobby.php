@@ -25,7 +25,7 @@
 <body>
 <nav>
 <ul>
-  <li style="float:left"><a class="active">Bienvenue <?= $data["username"] ?></a></li>
+  <li style="float:left"><a class="active">Bienvenue <?= $data["username"] ?> !</a></li>
   
   <li><a href="?logout=true">déconnexion</a></li>
   <li id="deckchange"><a href="">Changer de deck</a></li>
