@@ -30,7 +30,7 @@
   <li><a href="?logout=true">déconnexion</a></li>
   <li id="deckchange"><a href="">Changer de deck</a></li>
   <li><a href="">Pratiquer</a></li>
-  <li><a href="">Jouer</a></li>
+  <li><a href="jeu.php">Jouer</a></li>
   <li><a href="">Lobby</a></li>
   
 </ul>
