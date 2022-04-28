@@ -33,7 +33,10 @@
             $data = $this->executeAction();
             $data["username"] = $_SESSION["username"] ?? "Invité";
             $data["isSignedIn"] = $_SESSION["visibility"] > CommonAction::$VISIBILITY_PUBLIC;
-            $data["key"] = $_SESSION["key"];
+            if(isset($_SESSION["key"])){
+                $data["key"] = $_SESSION["key"];
+            }
+            
 
 
             return $data;

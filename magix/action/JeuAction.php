@@ -8,18 +8,7 @@
 		}
 
 		protected function executeAction() {
-			$data = [];
-			$data["key"] = $_SESSION["key"];
-			$data["type"] = "PVP";
 
-			$result = parent::callAPI("games/auto-match", $data);
-
-			if ($result == "CREATED_PVP") {
-				
-			}
-			
-			
-
-
+			return [];
 		}
 	}
