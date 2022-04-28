@@ -8,16 +8,19 @@
 		}
 
 		protected function executeAction() {
-			$data = [];
-			$data["key"] = $_SESSION["key"];
-			$data["type"] = "PVP";
+			if(isset($_POST["pvp"])){
+				$data = [];
+				$data["key"] = $_SESSION["key"];
+				$data["type"] = "PVP";
 
-			$result = parent::callAPI("games/auto-match", $data);
+				$result = parent::callAPI("games/auto-match", $data);
 
-			if ($result == "CREATED_PVP") {
-				header("location : jeu.php");
-				exit;
+				if ($result == "CREATED_PVP") {
+					header("Location:jeu.php");
+					exit;
+				}
 			}
+			
 
 		}
 	}

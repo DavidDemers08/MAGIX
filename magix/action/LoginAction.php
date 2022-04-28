@@ -28,7 +28,7 @@
                     $_SESSION["key"] = $result->key;
                     $_SESSION["username"] = $data["username"];
                     $_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
-                    header("location: lobby.php");
+                    header("Location:lobby.php");
                     exit;
                 }
 
