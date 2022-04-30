@@ -27,6 +27,7 @@
   <li><a href="">Pratiquer</a></li>
   <form action="" method="post">
       <input type="submit" value="Jouer" name="pvp">
+      <input type="submit" value="Pratiquer" name="pve">
   </form>
   
   <li><a href="">Lobby</a></li>

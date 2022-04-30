@@ -20,6 +20,18 @@
 					exit;
 				}
 			}
+			elseif(isset($_POST["pve"])){
+				$data = [];
+				$data["key"] = $_SESSION["key"];
+				$data["type"] = "TRAINING";
+
+				$result = parent::callAPI("games/auto-match", $data);
+
+				if ($result == "JOINED_TRAINING") {
+					header("Location:jeu.php");
+					exit;
+				}
+			}
 			
 
 		}
