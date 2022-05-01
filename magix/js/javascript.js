@@ -1,5 +1,5 @@
-var chargement = document.getElementsByClassName("ring")
-var board = document.getElementsByClassName("contenant")
+let chargement = document.getElementsByClassName("ring")
+let board = document.getElementsByClassName("contenant")
 
 
 const state = () => {
@@ -14,6 +14,11 @@ const state = () => {
         document.body.style.backgroundImage = "url(jpg/waiting.jpg)"
         chargement[0].style.display = 'none'
         board[0].style.display = "flex"
+        
+
+        
+
+        
         
     }
     if (data == "LAST_GAME_WON" || data == "LAST_GAME_LOST") {

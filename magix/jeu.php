@@ -25,13 +25,13 @@
     <div class="contenant">
         
         <div class="adversaire">
-            <img src="png/cercle rouge.png" alt="">
+            <p>35</p>
         </div> 
         <div class="terrain">
-            <img src="jpg/board.jpg" alt="" class="board">
+            <!-- <img src="jpg/board.jpg" alt="" class="board"> -->
         </div>
         <div class="main">
-            <img src="png/cercle mauve.png" alt="">
+            <p>35</p>
         </div>
     </div>
     

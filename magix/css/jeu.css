@@ -96,6 +96,12 @@ span:before
     max-height: 100%;
     margin: auto;
     display: block;
+    border-image: 25%;
+}
+
+p {
+    font-family: fantasy;
+    font-size: x-large;
 }
 
 .contenant {
@@ -107,19 +113,25 @@ span:before
 
 .terrain {
     height: 70vh;
+    background-color: green;
     
     
 }
 
 .adversaire {
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
     height: 15vh;
-    width: 100%;
+    background-color: red;
 }
 
+
+
 .main {
-    display: flex;
-    justify-content: center;
+    background-color: blue;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
     height: 15vh;
 }
