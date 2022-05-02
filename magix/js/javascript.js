@@ -7,13 +7,13 @@ let nbcartes = 0
 let mes_cartes = 0
 
 const state = () => {
-    fetch("ajax-state.php", {   // Il faut créer cette page et son contrôleur appelle 
- method : "POST"        // l’API (games/state)
+    fetch("ajax-state.php", {   // Il faut crÃ©er cette page et son contrÃ´leur appelle 
+ method : "POST"        // lâ€™API (games/state)
     })
 .then(response => response.json())
 .then(data => {
     console.log(data);
-    // contient les cartes/état du jeu.
+    // contient les cartes/Ã©tat du jeu.
     if (data == "LAST_GAME_WON" || data == "LAST_GAME_LOST") {
         location.href = "lobby.php"
     }
@@ -43,6 +43,13 @@ const state = () => {
                 let atk = document.createElement("p")
                 let hp = document.createElement("p")
                 let monstre = document.createElement("img")
+                
+
+                if (data.hand[index].cost <= data.mp){
+                    let etincelle = document.createElement("img")
+                    etincelle.setAttribute('id',"glit")
+                    etincelle.src = ""
+                }
 
                 
 
@@ -139,7 +146,7 @@ const state = () => {
     }
     
 
-    setTimeout(state, 1000); // Attendre 1 seconde avant de relancer l’appel
+    setTimeout(state, 1000); // Attendre 1 seconde avant de relancer lâ€™appel
     })
 }
 
