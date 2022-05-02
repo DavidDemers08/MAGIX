@@ -23,16 +23,19 @@
         <span></span>
     </div>
     <div class="contenant">
-        
+        <div id="contenant_adversaire"></div>
         <div class="adversaire">
-            <p>35</p>
+            <img class="vie" src="png/—Pngtree—futuristic circle glitch frame_5978309.png" alt="">
+            <p id="autre_vie">35</p>
         </div> 
         <div class="terrain">
             <!-- <img src="jpg/board.jpg" alt="" class="board"> -->
         </div>
         <div class="main">
-            <p>35</p>
+            <img class="vie" src="png/—Pngtree—futuristic circle glitch frame_5978309.png" alt="">
+            <p id="moi_vie"></p>
         </div>
+        <div id="contenant_main"></div>
     </div>
     
 </body>
