@@ -1,21 +1,24 @@
 let chargement = document.getElementsByClassName("ring")
 let board = document.getElementsByClassName("contenant")
 const bouton = document.querySelector("#bouton_fin_tour")
-
+var dragged
+let cartes
 
 bouton.onclick = () => {
     formData = new FormData();
     formData.append("action",'END_TURN')
-    const action = () => {
-        fetch("ajax-action.php", {
-            method : "POST",
-            body : formData
-        })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
+    action()
+}
+
+const action = () => {
+    fetch("ajax-action.php", {
+        method : "POST",
+        body : formData
     })
-    }
+.then(response => response.json())
+.then(data => {
+    console.log(data)
+})
 }
 
 const state = () => {
@@ -40,6 +43,24 @@ const state = () => {
         joueur_cartes(data)
         ennemi_cartes(data)
         montrer_board(data)
+        
+    cartes = document.querySelectorAll("#carte");
+
+    cartes.forEach(carte => {
+        carte.addEventListener('dragstart',(event) => {
+            dragged = event.target
+            event.target.style.opacity = 0.5
+        },false)
+        carte.addEventListener('dragend',(event) =>{
+            event.target.style.opacity = "";
+        },false)
+        carte.addEventListener("dragover",(event) => {
+            // Empêche default d'autoriser le drop
+            event.preventDefault();
+        }, false);
+
+    })
+    
     }
     
 
@@ -77,7 +98,7 @@ function afficher(data) {
         monstre.setAttribute('id','monstre')
 
         div.setAttribute('id',data.opponent.board[index].id)
-        div.setAttribute('id','carte')
+        div.setAttribute('id','ennemi_carte')
         div.setAttribute('draggable','false')
         cadre.setAttribute('draggable','false')
         monstre.setAttribute('draggable','false')
@@ -141,17 +162,6 @@ function afficher(data) {
 
     
 }
-function handleDragStart(e) {
-  }
-  
-  function handleDragEnd(e) {
-  }
-
-let cartes = document.querySelectorAll('.contenant_main');
-cartes.forEach(function (carte) {
-  carte.addEventListener('dragstart', handleDragStart);
-  carte.addEventListener('dragend', handleDragEnd);
-});
 
 function effacer_board() {
 
@@ -207,6 +217,8 @@ function joueur_cartes(data){
         div.setAttribute('id',data.hand[index].id)
         div.setAttribute('id','carte')
         div.setAttribute('draggable','true')
+        cadre.setAttribute('draggable','false')
+        monstre.setAttribute('draggable','false')
 
 
         mana.innerText = data.hand[index].cost
