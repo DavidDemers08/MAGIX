@@ -1,10 +1,26 @@
 let chargement = document.getElementsByClassName("ring")
 let board = document.getElementsByClassName("contenant")
-let bouton = document.getElementById("bouton_fin_tour")
+const bouton = document.querySelector("#bouton_fin_tour")
+
+
+bouton.onclick = () => {
+    formData = new FormData();
+    formData.append("action",'END_TURN')
+    const action = () => {
+        fetch("ajax-action.php", {
+            method : "POST",
+            body : formData
+        })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+    })
+    }
+}
 
 const state = () => {
     fetch("ajax-state.php", {   // Il faut crÃ©er cette page et son contrÃ´leur appelle 
- method : "POST"        // lâ€™API (games/state)
+        method : "POST"       // lâ€™API (games/state)
     })
 .then(response => response.json())
 .then(data => {
@@ -61,7 +77,10 @@ function afficher(data) {
         monstre.setAttribute('id','monstre')
 
         div.setAttribute('id',data.opponent.board[index].id)
-        div.setAttribute('class','carte')
+        div.setAttribute('id','carte')
+        div.setAttribute('draggable','false')
+        cadre.setAttribute('draggable','false')
+        monstre.setAttribute('draggable','false')
 
         mana.innerText = data.opponent.board[index].cost
         atk.innerText = data.opponent.board[index].atk
@@ -69,7 +88,6 @@ function afficher(data) {
 
 
 
-        div.style.height = "100%"
         monstre.src = "jpg/Hnet.com-image.png"
         cadre.src = "png/carte_visible.png"
 
@@ -99,15 +117,14 @@ function afficher(data) {
         monstre.setAttribute('id','monstre')
 
         div.setAttribute('id',data.board[index].id)
-        div.setAttribute('class','carte')
+        div.setAttribute('id','carte')
+        div.setAttribute('draggable','false')
 
         mana.innerText = data.board[index].cost
         atk.innerText = data.board[index].atk
         hp.innerText = data.board[index].hp
 
 
-
-        div.style.height = "100%"
         monstre.src = "jpg/Hnet.com-image.png"
         cadre.src = "png/carte_visible.png"
 
@@ -119,7 +136,7 @@ function afficher(data) {
         div.appendChild(atk)
         div.appendChild(hp)
 
-        document.getElementById("terrain_ennemi").appendChild(div)
+        document.getElementById("mon_terrain").appendChild(div)
     }
 
     
@@ -160,6 +177,7 @@ function ennemi_cartes(data) {
         let img = document.createElement("img")
         img.src = "png/back_card.png"
         img.style.maxHeight = "100%"
+        img.setAttribute('draggable','false')
         document.getElementById("contenant_adversaire").appendChild(img)
     }
 }
@@ -187,7 +205,9 @@ function joueur_cartes(data){
         monstre.setAttribute('id','monstre')
 
         div.setAttribute('id',data.hand[index].id)
-        div.setAttribute('class','carte')
+        div.setAttribute('id','carte')
+        div.setAttribute('draggable','true')
+
 
         mana.innerText = data.hand[index].cost
         atk.innerText = data.hand[index].atk

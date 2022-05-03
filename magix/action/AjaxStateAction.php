@@ -10,8 +10,17 @@
 		protected function executeAction() {
             $data = [];
 			$data["key"] = $_SESSION["key"];
+			
+			
+			if (isset($_POST["action"])) {
+				$data["type"] = $_POST["action"];
+				parent::callAPI("games/action",$data);
+				unset($_POST["action"]);
+			}
 
 			$result = parent::callAPI("games/state", $data);
 			return compact("result");
 		}
+
+		
 	}

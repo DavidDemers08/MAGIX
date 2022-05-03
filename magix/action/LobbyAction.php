@@ -20,7 +20,7 @@
 					exit;
 				}
 			}
-			elseif(isset($_POST["pve"])){
+			else if(isset($_POST["pve"])){
 				$data = [];
 				$data["key"] = $_SESSION["key"];
 				$data["type"] = "TRAINING";
