@@ -29,13 +29,17 @@
             <p id="autre_vie">35</p>
         </div> 
         <div class="terrain">
-            <!-- <img src="jpg/board.jpg" alt="" class="board"> -->
+            <div id="terrain_ennemi"></div>
+            <div id="mon_terrain"></div>
         </div>
         <div class="main">
             <img class="vie" src="png/—Pngtree—futuristic circle glitch frame_5978309.png" alt="">
             <p id="moi_vie"></p>
         </div>
-        <div id="contenant_main"></div>
+        <div id="contenant_main">
+
+        </div>
+        <button id="bouton_fin_tour" onclick="click">fin de tour</button>
     </div>
     
 </body>

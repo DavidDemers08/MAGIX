@@ -113,8 +113,24 @@ p {
 
 .terrain {
   height: 50vh;
+  display: flex;
+  flex-direction: column;
   
   
+}
+
+#terrain_ennemi {
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#mon_terrain {
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .vie {
@@ -166,10 +182,10 @@ position: relative;
 }
 
 #monstre {
-height: 100%;
-padding-bottom: 10%;
+height: 90%;
+width: 95%;
 top: 5%;
-width: 100%;
+left: 2%;
 position: absolute;
 }
 
@@ -209,3 +225,17 @@ gap: 1vh;
 .carte{
 position: relative;
 }
+
+#bouton_fin_tour{
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  width: 10%;
+  font-size: x-large;
+  color: whitesmoke;
+  background-color: #3c3c3c;
+  border-style:groove;
+  border-color: whitesmoke;
+}
+
+
