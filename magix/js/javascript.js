@@ -54,12 +54,19 @@ const state = () => {
         carte.addEventListener('dragend',(event) =>{
             event.target.style.opacity = "";
         },false)
-        carte.addEventListener("dragover",(event) => {
-            // Empêche default d'autoriser le drop
+        carte.addEventListener("drop", (event)=> {
+            // Empêche l'action par défaut (ouvrir comme lien pour certains éléments)
             event.preventDefault();
+            
+            // Déplace l'élément traîné vers la cible du drop sélectionnée
+            if ( event.target.id == "mon_terrain" ) {
+                dragged.parentNode.removeChild(dragged);
+                event.target.appendChild( dragged );
+            }
+      
         }, false);
-
     })
+
     
     }
     
