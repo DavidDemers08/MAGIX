@@ -30,7 +30,7 @@
         </div> 
         <div class="terrain">
             <div id="terrain_ennemi"></div>
-            <div id="mon_terrain"></div>
+            <div class="mon_terrain" id="mon_terrain"></div>
         </div>
         <div class="main">
             <img class="vie" src="png/—Pngtree—futuristic circle glitch frame_5978309.png" alt="">

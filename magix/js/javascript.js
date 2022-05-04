@@ -1,8 +1,8 @@
 let chargement = document.getElementsByClassName("ring")
 let board = document.getElementsByClassName("contenant")
 const bouton = document.querySelector("#bouton_fin_tour")
-var dragged
 let cartes
+let monBoard
 
 bouton.onclick = () => {
     formData = new FormData();
@@ -44,29 +44,7 @@ const state = () => {
         ennemi_cartes(data)
         montrer_board(data)
         
-    cartes = document.querySelectorAll("#carte");
-
-    cartes.forEach(carte => {
-        carte.addEventListener('dragstart',(event) => {
-            dragged = event.target
-            event.target.style.opacity = 0.5
-        },false)
-        carte.addEventListener('dragend',(event) =>{
-            event.target.style.opacity = "";
-        },false)
-        carte.addEventListener("drop", (event)=> {
-            // Empêche l'action par défaut (ouvrir comme lien pour certains éléments)
-            event.preventDefault();
-            
-            // Déplace l'élément traîné vers la cible du drop sélectionnée
-            if ( event.target.id == "mon_terrain" ) {
-                dragged.parentNode.removeChild(dragged);
-                event.target.appendChild( dragged );
-            }
-      
-        }, false);
-    })
-
+        dragAndDrop()
     
     }
     
@@ -79,14 +57,45 @@ window.addEventListener("load", () => {
 setTimeout(state, 1000); // Appel initial (attendre 1 seconde)
 });
 
+function dragAndDrop(){
+    cartes = document.querySelectorAll(".carte");
+    monBoard = document.querySelector(".mon_terrain")
+
+    cartes.forEach(carte => {
+        carte.addEventListener('dragstart', () => {
+            carte.classList.add('dragging')
+        })
+        carte.addEventListener('dragend', () => {
+            carte.classList.remove('dragging')
+        })
+    })
+
+    monBoard.addEventListener("dragover", (e) => {
+        e.preventDefault()
+    })
+
+    monBoard.addEventListener("drop",() => {
+        const draggable = document.querySelector('.dragging')
+        formData = new FormData();
+        formData.append("action",'PLAY')
+        formData.append("uid",draggable.id)
+        fetch("ajax-action.php", {
+            method : "POST",
+            body : formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
+        
+    })
+
+}
+
 function montrer_board(data){
 
     effacer_board()
     afficher(data)
-}
-
-function click(evt) {
-    console.log("salut")
 }
 function afficher(data) {
 
@@ -104,8 +113,8 @@ function afficher(data) {
         cadre.setAttribute('id',"cadre")
         monstre.setAttribute('id','monstre')
 
-        div.setAttribute('id',data.opponent.board[index].id)
-        div.setAttribute('id','ennemi_carte')
+        div.setAttribute('id',data.opponent.board[index].uid)
+        div.setAttribute('class','ennemi_carte')
         div.setAttribute('draggable','false')
         cadre.setAttribute('draggable','false')
         monstre.setAttribute('draggable','false')
@@ -144,8 +153,8 @@ function afficher(data) {
         cadre.setAttribute('id',"cadre")
         monstre.setAttribute('id','monstre')
 
-        div.setAttribute('id',data.board[index].id)
-        div.setAttribute('id','carte')
+        div.setAttribute('id',data.board[index].uid)
+        div.setAttribute('class','carte')
         div.setAttribute('draggable','false')
 
         mana.innerText = data.board[index].cost
@@ -221,8 +230,8 @@ function joueur_cartes(data){
         cadre.setAttribute('id',"cadre")
         monstre.setAttribute('id','monstre')
 
-        div.setAttribute('id',data.hand[index].id)
-        div.setAttribute('id','carte')
+        div.setAttribute('id',data.hand[index].uid)
+        div.setAttribute('class','carte')
         div.setAttribute('draggable','true')
         cadre.setAttribute('draggable','false')
         monstre.setAttribute('draggable','false')
