@@ -2,13 +2,25 @@ let chargement = document.getElementsByClassName("ring")
 let board = document.getElementsByClassName("contenant")
 const bouton = document.querySelector("#bouton_fin_tour")
 let cartes
-let monBoard
+let drag;
+let monBoard;
+let mechant_cartes;
+// let mes_cartes = document.querySelectorAll("#cadre");
+
+// mes_cartes.forEach(carte => {
+//     carte.onclick = () => {
+//         console.log("salut")
+//     }
+// })
 
 bouton.onclick = () => {
     formData = new FormData();
     formData.append("action",'END_TURN')
     action()
 }
+
+
+
 
 const action = () => {
     fetch("ajax-action.php", {
@@ -58,15 +70,17 @@ setTimeout(state, 1000); // Appel initial (attendre 1 seconde)
 });
 
 function dragAndDrop(){
-    cartes = document.querySelectorAll(".carte");
+    cartes = document.querySelectorAll(".carte_dispo");
     monBoard = document.querySelector(".mon_terrain")
 
     cartes.forEach(carte => {
         carte.addEventListener('dragstart', () => {
-            carte.classList.add('dragging')
+            // carte.classList.add('dragging')
+            drag = carte
         })
         carte.addEventListener('dragend', () => {
-            carte.classList.remove('dragging')
+            // carte.classList.remove('dragging')
+            drag = null
         })
     })
 
@@ -75,7 +89,7 @@ function dragAndDrop(){
     })
 
     monBoard.addEventListener("drop",() => {
-        const draggable = document.querySelector('.dragging')
+        const draggable = drag
 
         if (draggable != null) {formData = new FormData();
             formData.append("action",'PLAY')
@@ -167,7 +181,9 @@ function afficher(data) {
 
         div.setAttribute('id',data.board[index].uid)
         div.setAttribute('class','carte')
-        div.setAttribute('draggable','false')
+        div.setAttribute('draggable','true')
+        cadre.setAttribute('draggable','false')
+        monstre.setAttribute('draggable','false')
 
         mana.innerText = data.board[index].cost
         atk.innerText = data.board[index].atk
@@ -247,7 +263,13 @@ function joueur_cartes(data){
         description.setAttribute('id',"description")
 
         div.setAttribute('id',data.hand[index].uid)
-        div.setAttribute('class','carte')
+        if (data.mp >= data.hand[index].cost) {
+            div.setAttribute('class','carte_dispo')
+        }
+        else {
+            div.setAttribute('class','carte')
+        }
+        
         div.setAttribute('draggable','true')
         cadre.setAttribute('draggable','false')
         monstre.setAttribute('draggable','false')
