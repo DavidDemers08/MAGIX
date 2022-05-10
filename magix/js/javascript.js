@@ -76,17 +76,20 @@ function dragAndDrop(){
 
     monBoard.addEventListener("drop",() => {
         const draggable = document.querySelector('.dragging')
-        formData = new FormData();
-        formData.append("action",'PLAY')
-        formData.append("uid",draggable.id)
-        fetch("ajax-action.php", {
-            method : "POST",
-            body : formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-        })
+
+        if (draggable != null) {formData = new FormData();
+            formData.append("action",'PLAY')
+            formData.append("uid",draggable.id)
+            fetch("ajax-action.php", {
+                method : "POST",
+                body : formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+        }
+        
         
     })
 
@@ -106,12 +109,14 @@ function afficher(data) {
         let atk = document.createElement("p")
         let hp = document.createElement("p")
         let monstre = document.createElement("img")
+        let description = document.createElement("p")
 
         mana.setAttribute('id',"mana")
         atk.setAttribute('id',"atk")
         hp.setAttribute('id',"hp")
         cadre.setAttribute('id',"cadre")
         monstre.setAttribute('id','monstre')
+        description.setAttribute('id','description')
 
         div.setAttribute('id',data.opponent.board[index].uid)
         div.setAttribute('class','ennemi_carte')
@@ -122,6 +127,7 @@ function afficher(data) {
         mana.innerText = data.opponent.board[index].cost
         atk.innerText = data.opponent.board[index].atk
         hp.innerText = data.opponent.board[index].hp
+        description.innerText = data.opponent.board[index].mechanics[0]
 
 
 
@@ -131,23 +137,29 @@ function afficher(data) {
         
         
         div.appendChild(monstre)
+        div.appendChild(description)
         div.appendChild(cadre)
         div.appendChild(mana)
         div.appendChild(atk)
         div.appendChild(hp)
+        
 
         document.getElementById("terrain_ennemi").appendChild(div)
     }
 
     for (let index = 0; index < data.board.length; index++) {
         let div = document.createElement("div")
-        let cadre = document.createElement("img")
+        
         let mana = document.createElement("p")
         let atk = document.createElement("p")
         let hp = document.createElement("p")
+        let description = document.createElement("p")
+
         let monstre = document.createElement("img")
+        let cadre = document.createElement("img")
 
         mana.setAttribute('id',"mana")
+        description.setAttribute('id',"description")
         atk.setAttribute('id',"atk")
         hp.setAttribute('id',"hp")
         cadre.setAttribute('id',"cadre")
@@ -160,6 +172,7 @@ function afficher(data) {
         mana.innerText = data.board[index].cost
         atk.innerText = data.board[index].atk
         hp.innerText = data.board[index].hp
+        description.innerText = data.board[index].mechanics[0]
 
 
         monstre.src = "jpg/Hnet.com-image.png"
@@ -168,6 +181,7 @@ function afficher(data) {
         
         
         div.appendChild(monstre)
+        div.appendChild(description)
         div.appendChild(cadre)
         div.appendChild(mana)
         div.appendChild(atk)
@@ -223,12 +237,14 @@ function joueur_cartes(data){
         let atk = document.createElement("p")
         let hp = document.createElement("p")
         let monstre = document.createElement("img")
+        let description = document.createElement("p")
 
         mana.setAttribute('id',"mana")
         atk.setAttribute('id',"atk")
         hp.setAttribute('id',"hp")
         cadre.setAttribute('id',"cadre")
         monstre.setAttribute('id','monstre')
+        description.setAttribute('id',"description")
 
         div.setAttribute('id',data.hand[index].uid)
         div.setAttribute('class','carte')
@@ -236,10 +252,10 @@ function joueur_cartes(data){
         cadre.setAttribute('draggable','false')
         monstre.setAttribute('draggable','false')
 
-
         mana.innerText = data.hand[index].cost
         atk.innerText = data.hand[index].atk
         hp.innerText = data.hand[index].hp
+        description.innerText = data.hand[index].mechanics[0]
 
 
 
@@ -250,6 +266,7 @@ function joueur_cartes(data){
         
         
         div.appendChild(monstre)
+        div.appendChild(description)
         div.appendChild(cadre)
         div.appendChild(mana)
         div.appendChild(atk)
