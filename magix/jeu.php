@@ -26,7 +26,7 @@
         <div id="contenant_adversaire"></div>
         <div class="adversaire">
             <img class="vie" src="png/—Pngtree—futuristic circle glitch frame_5978309.png" alt="">
-            <p id="autre_vie">35</p>
+            <p id="autre_vie"></p>
         </div> 
         <div class="terrain">
             <div id="terrain_ennemi"></div>

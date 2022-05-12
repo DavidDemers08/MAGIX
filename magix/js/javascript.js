@@ -4,20 +4,52 @@ const bouton = document.querySelector("#bouton_fin_tour")
 let cartes
 let drag;
 let monBoard;
-let mechant_cartes;
-// let mes_cartes = document.querySelectorAll("#cadre");
-
-// mes_cartes.forEach(carte => {
+let parent;
+let id_selection
+// console.log(boardCartes)
+// document.querySelectorAll("cadre").forEach(carte => {
 //     carte.onclick = () => {
 //         console.log("salut")
 //     }
 // })
+
 
 bouton.onclick = () => {
     formData = new FormData();
     formData.append("action",'END_TURN')
     action()
 }
+
+function clickMechants(){
+    if (id_selection != undefined) {
+        let mechants = document.querySelectorAll(".ennemi_carte")
+        mechants.onclick = () => {
+            formData = new FormData();
+
+        }
+    }
+    
+}
+
+
+function clickCartesBoard(data){
+    let boardCartes = document.querySelectorAll(".cadre")
+    boardCartes.forEach(carte => {
+        carte.onclick = () => {
+            if (id_selection != undefined) {
+                id_selection = null
+            }
+            else {
+                id_selection = carte.parentNode.id
+            }
+            
+            
+        }
+    })
+}
+
+
+
 
 
 
@@ -49,12 +81,13 @@ const state = () => {
         board[0].style.display = "flex"
         chargement[0].style.display = 'none'
         document.getElementById("moi_vie").innerText = data.hp
-        document.getElementsByClassName("autre_vie").innerText = data.opponent.hp
+        document.getElementById("autre_vie").innerText = data.opponent.hp
         
 
         joueur_cartes(data)
         ennemi_cartes(data)
         montrer_board(data)
+        clickCartesBoard(data)
         
         dragAndDrop()
     
@@ -161,6 +194,8 @@ function afficher(data) {
         document.getElementById("terrain_ennemi").appendChild(div)
     }
 
+    console.log(id_selection)
+
     for (let index = 0; index < data.board.length; index++) {
         let div = document.createElement("div")
         
@@ -177,6 +212,7 @@ function afficher(data) {
         atk.setAttribute('id',"atk")
         hp.setAttribute('id',"hp")
         cadre.setAttribute('id',"cadre")
+        cadre.setAttribute('class',"cadre")
         monstre.setAttribute('id','monstre')
 
         div.setAttribute('id',data.board[index].uid)
@@ -184,6 +220,12 @@ function afficher(data) {
         div.setAttribute('draggable','true')
         cadre.setAttribute('draggable','false')
         monstre.setAttribute('draggable','false')
+
+        
+
+        if (data.board[index].uid == id_selection & data.yourTurn == true & data.board[index].state == "IDLE") {
+            div.setAttribute('class','selection-atk')
+        }
 
         mana.innerText = data.board[index].cost
         atk.innerText = data.board[index].atk
@@ -263,7 +305,7 @@ function joueur_cartes(data){
         description.setAttribute('id',"description")
 
         div.setAttribute('id',data.hand[index].uid)
-        if (data.mp >= data.hand[index].cost) {
+        if (data.mp >= data.hand[index].cost & data.yourTurn == true) {
             div.setAttribute('class','carte_dispo')
         }
         else {
