@@ -2,10 +2,19 @@ let chargement = document.getElementsByClassName("ring")
 let board = document.getElementsByClassName("contenant")
 const bouton = document.querySelector("#bouton_fin_tour")
 let cartes
+const vie = document.querySelector(".m-vie")
 let drag;
 let monBoard;
 let parent;
 let id_selection
+let power = document.querySelector(".power")
+
+power.onclick = () => {
+    formData = new FormData();
+    formData.append("action",'HERO_POWER')
+    action()
+
+}
 // console.log(boardCartes)
 // document.querySelectorAll("cadre").forEach(carte => {
 //     carte.onclick = () => {
@@ -14,20 +23,43 @@ let id_selection
 // })
 
 
+
+vie.onclick = () => {
+    if (id_selection != undefined | id_selection != null) {
+        attack(0)
+    // formData = new FormData();
+    // formData.append("action",'END_TURN')
+    // action()
+    // console.log("salut")
+    }
+}
+
 bouton.onclick = () => {
     formData = new FormData();
     formData.append("action",'END_TURN')
     action()
 }
 
-function clickMechants(){
-    if (id_selection != undefined) {
-        let mechants = document.querySelectorAll(".ennemi_carte")
-        mechants.onclick = () => {
-            formData = new FormData();
 
-        }
+
+function clickMechants(){
+    if (id_selection != undefined | id_selection != null) {
+        let mechants = document.querySelectorAll("#cadre-ennemi")
+        mechants.forEach(carte =>{
+            carte.onclick = () => {
+                id = carte.parentNode.id
+                attack(id)
+            }
+        })
     }
+}
+
+function attack(ennemi) {
+    formData = new FormData();
+    formData.append("action",'ATTACK')
+    formData.append("uid",id_selection)
+    formData.append("targetuid",ennemi)
+    action()
     
 }
 
@@ -82,12 +114,23 @@ const state = () => {
         chargement[0].style.display = 'none'
         document.getElementById("moi_vie").innerText = data.hp
         document.getElementById("autre_vie").innerText = data.opponent.hp
-        
+        if (data.yourTurn == false) {
+            bouton.disabled = true;
+            document.querySelector(".power").src = "png/poweroff.png"
+        }
+        if(data.heroPowerAlreadyUsed == true){
+            document.querySelector(".power").src = "png/poweroff.png"
+        }
+        else {
+            bouton.disabled = false;
+            document.querySelector(".power").src = "png/power.png" 
+        }
 
         joueur_cartes(data)
         ennemi_cartes(data)
         montrer_board(data)
         clickCartesBoard(data)
+        clickMechants(data)
         
         dragAndDrop()
     
@@ -161,7 +204,7 @@ function afficher(data) {
         mana.setAttribute('id',"mana")
         atk.setAttribute('id',"atk")
         hp.setAttribute('id',"hp")
-        cadre.setAttribute('id',"cadre")
+        cadre.setAttribute('id',"cadre-ennemi")
         monstre.setAttribute('id','monstre')
         description.setAttribute('id','description')
 
@@ -194,7 +237,6 @@ function afficher(data) {
         document.getElementById("terrain_ennemi").appendChild(div)
     }
 
-    console.log(id_selection)
 
     for (let index = 0; index < data.board.length; index++) {
         let div = document.createElement("div")

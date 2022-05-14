@@ -143,6 +143,19 @@ max-height: 100%;
 max-width: 100%;
 }
 
+.m-vie{
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.power{
+  position: absolute;
+  max-height: 100%;
+  max-width: 100%;
+  left: 55%;
+  height: 15%;
+}
+
 .selection-atk {
   position: relative;
   height: 100%;
@@ -202,6 +215,12 @@ font-size: large;
   height: 100%;
 
   
+}
+
+#cadre-ennemi{
+  max-height: 100%;
+  position: relative;
+  height: 100%;
 }
 
 
