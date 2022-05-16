@@ -113,6 +113,7 @@ const state = () => {
         board[0].style.display = "flex"
         chargement[0].style.display = 'none'
         document.getElementById("moi_vie").innerText = data.hp
+        document.getElementById("moi-mana").innerText = data.mp
         document.getElementById("autre_vie").innerText = data.opponent.hp
         if (data.yourTurn == false) {
             bouton.disabled = true;
@@ -222,7 +223,18 @@ function afficher(data) {
 
 
         monstre.src = "jpg/Hnet.com-image.png"
-        cadre.src = "png/carte_visible.png"
+        if (data.opponent.board[index].mechanics[0] == "Taunt") {
+            cadre.src = "png/vrai_gris.png"
+        }
+        else if(data.opponent.board[index].mechanics[0] == "Stealth"){
+            cadre.src = "png/cadre.png"
+        }
+        else if(data.opponent.board[index].mechanics[0] == "Charge"){
+            cadre.src = "png/cadre_rouge.png"
+        }
+        else {
+            cadre.src = "png/carte_visible.png"
+        }
 
         
         
@@ -267,6 +279,7 @@ function afficher(data) {
 
         if (data.board[index].uid == id_selection & data.yourTurn == true & data.board[index].state == "IDLE") {
             div.setAttribute('class','selection-atk')
+
         }
 
         mana.innerText = data.board[index].cost
@@ -276,7 +289,25 @@ function afficher(data) {
 
 
         monstre.src = "jpg/Hnet.com-image.png"
-        cadre.src = "png/carte_visible.png"
+        if (data.board[index].mechanics[i] == "Taunt") {
+            cadre.src = "png/cadre.png"
+        }
+        else {
+            cadre.src = "png/carte_visible.png"
+        }
+
+        if (data.board[index].mechanics[0] == "Taunt") {
+            cadre.src = "png/vrai_gris.png"
+        }
+        else if(data.board[index].mechanics[0] == "Stealth"){
+            cadre.src = "png/cadre.png"
+        }
+        else if(data.board[index].mechanics[0] == "Charge"){
+            cadre.src = "png/cadre_rouge.png"
+        }
+        else {
+            cadre.src = "png/carte_visible.png"
+        }
 
         
         
@@ -361,13 +392,26 @@ function joueur_cartes(data){
         mana.innerText = data.hand[index].cost
         atk.innerText = data.hand[index].atk
         hp.innerText = data.hand[index].hp
+        
         description.innerText = data.hand[index].mechanics[0]
 
 
 
         div.style.height = "100%"
         monstre.src = "jpg/Hnet.com-image.png"
-        cadre.src = "png/carte_visible.png"
+
+        if (data.hand[index].mechanics[0] == "Taunt") {
+            cadre.src = "png/vrai_gris.png"
+        }
+        else if(data.hand[index].mechanics[0] == "Stealth"){
+            cadre.src = "png/cadre.png"
+        }
+        else if(data.hand[index].mechanics[0] == "Charge"){
+            cadre.src = "png/cadre_rouge.png"
+        }
+        else {
+            cadre.src = "png/carte_visible.png"
+        }
 
         
         

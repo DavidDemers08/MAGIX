@@ -185,6 +185,12 @@ margin: auto;
 color: whitesmoke;
 }
 
+#moi-mana{
+  position: absolute;
+  left: 41.8%;
+  color: whitesmoke;
+}
+
 #autre_vie {
 position: absolute;
 margin: auto;
@@ -198,6 +204,14 @@ left: 9%;
 margin: 0;
 color: aliceblue;
 font-size: large;
+}
+
+.mana {
+  position: absolute;
+  max-height: 100%;
+  max-width: 100%;
+  left: 40%;
+  height: 8%;
 }
 
 #atk {

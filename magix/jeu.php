@@ -36,6 +36,8 @@
             <img class="vie" src="png/—Pngtree—futuristic circle glitch frame_5978309.png" alt="">
             <p id="moi_vie"></p>
             <img class="power"src="png/power.png" alt="">
+            <img class="mana" src="png/mana.png" alt="">
+            <p id="moi-mana"></p>
         </div>
         <div id="contenant_main">
 
