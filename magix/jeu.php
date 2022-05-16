@@ -23,6 +23,13 @@
         <span></span>
     </div>
     <div class="contenant">
+        <button id="chat">Chat</button>
+        <div class="chat">
+            <iframe class="frame" style="background: #FFFFFF;top:5%;width: 35%;height:15%;position:absolute; display: none;" 
+                    src="https://magix.apps-de-cours.com/server/#/chat/<?=$data["key"]?>">
+            </iframe>
+        </div>
+        
         <div id="contenant_adversaire"></div>
         <div class="adversaire">
             <img class="m-vie" src="png/—Pngtree—futuristic circle glitch frame_5978309.png" alt="">

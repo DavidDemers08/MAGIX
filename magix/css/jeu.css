@@ -191,6 +191,11 @@ color: whitesmoke;
   color: whitesmoke;
 }
 
+#chat {
+  position: absolute;
+  width: 10%;
+}
+
 #autre_vie {
 position: absolute;
 margin: auto;

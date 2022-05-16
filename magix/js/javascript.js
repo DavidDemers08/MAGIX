@@ -8,6 +8,18 @@ let monBoard;
 let parent;
 let id_selection
 let power = document.querySelector(".power")
+let chat = document.querySelector("#chat")
+let etat =false
+let chatframe = document.querySelector(".chat")
+
+let gagnant
+let ennemi
+let jour = new Date().toLocaleDateString()
+
+
+
+
+
 
 power.onclick = () => {
     formData = new FormData();
@@ -15,12 +27,6 @@ power.onclick = () => {
     action()
 
 }
-// console.log(boardCartes)
-// document.querySelectorAll("cadre").forEach(carte => {
-//     carte.onclick = () => {
-//         console.log("salut")
-//     }
-// })
 
 
 
@@ -60,6 +66,22 @@ function attack(ennemi) {
     formData.append("uid",id_selection)
     formData.append("targetuid",ennemi)
     action()
+    
+}
+
+function score() {
+    formData = new FormData();
+    formData.append("ennemi",ennemi)
+    formData.append("gagnant",gagnant)
+    formData.append("jour",jour)
+    fetch("ajax-score.php", {
+        method : "POST",
+        body : formData
+    })
+.then(response => response.json())
+.then(data => {
+    console.log(data)
+})
     
 }
 
@@ -104,11 +126,28 @@ const state = () => {
 .then(response => response.json())
 .then(data => {
     console.log(data);
+
+
     // contient les cartes/Ã©tat du jeu.
-    if (data == "LAST_GAME_WON" || data == "LAST_GAME_LOST") {
+    if (data == "LAST_GAME_WON" ) {
+
+        
+        gagnant = "moi"
+        score()
+        location.href = "lobby.php"
+
+    }
+    else if (data == "LAST_GAME_LOST"){
+        
+        gagnant = data.opponent.username
+        score()
         location.href = "lobby.php"
     }
     if (data != "WAITING"){
+
+        ennemi = data.opponent.username
+
+
 
         board[0].style.display = "flex"
         chargement[0].style.display = 'none'
@@ -134,6 +173,21 @@ const state = () => {
         clickMechants(data)
         
         dragAndDrop()
+        
+        chat.onclick = () => {
+            let chat = document.querySelector(".frame")
+            if (etat == false) {
+               chat.style.display = "block"
+                etat = true
+            }
+            else {
+                chat.style.display = "none"
+                etat = false
+            }
+        
+            
+        
+        }
     
     }
     
@@ -289,7 +343,7 @@ function afficher(data) {
 
 
         monstre.src = "jpg/Hnet.com-image.png"
-        if (data.board[index].mechanics[i] == "Taunt") {
+        if (data.board[index].mechanics[0] == "Taunt") {
             cadre.src = "png/cadre.png"
         }
         else {
