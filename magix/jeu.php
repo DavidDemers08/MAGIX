@@ -51,6 +51,7 @@
         </div>
         <button id="bouton_fin_tour">fin de tour</button>
     </div>
+</div>
     
 </body>
 </html>

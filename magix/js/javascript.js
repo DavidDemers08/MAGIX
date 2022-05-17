@@ -134,14 +134,15 @@ const state = () => {
         
         gagnant = "moi"
         score()
-        location.href = "lobby.php"
+        location.href = "victoire.html"
 
     }
     else if (data == "LAST_GAME_LOST"){
         
-        gagnant = data.opponent.username
+        gagnant = "ennemi"
         score()
-        location.href = "lobby.php"
+        location.href = "defaite.html"
+
     }
     if (data != "WAITING"){
 

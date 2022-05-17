@@ -24,10 +24,15 @@
   
   <li><a href="?logout=true">déconnexion</a></li>
   <li id="deckchange"><a href="">Changer de deck</a></li>
-  <li><a href="">Pratiquer</a></li>
   <form action="" method="post">
-      <input type="submit" value="Jouer" name="pvp">
-      <input type="submit" value="Pratiquer" name="pve">
+      <li>
+        <input type="submit" value="Jouer" name="pvp">
+      </li>
+      <li>
+        <input type="submit" value="Pratiquer" name="pve">
+      </li>
+      
+      
   </form>
   
   <li><a href="">Lobby</a></li>
