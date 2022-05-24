@@ -1,8 +1,7 @@
 const state = () => {
-    fetch("https://notes-de-cours.com/dev/exam-api.php", {
+    fetch("https://notes-de-cours.com/dev/exam-api", {
         method : "POST"       
     })
-.then(response => response.json())
 .then(data => {
     console.log(data);
 
