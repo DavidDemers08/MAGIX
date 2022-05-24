@@ -4,9 +4,23 @@ const state = () => {
     })
 .then(response => response.json())
 .then(data => {
-    console.log(data);
+    console.log(data.evt);
 
-    setTimeout(state, 1000); // Attendre 1 seconde avant de relancer lâ€™appel
+    if (data.evt < 7 && data.evt > 0){
+        document.querySelector("#frame-"+ data.evt).style.display = "none";
+    }
+
+    for (let index = 1; index < 7; index++) {
+        
+        document.querySelector("#frame-"+ index + "-evil").onclick = () =>{
+            document.querySelector("#frame-"+ index).style.display = "block"
+            document.querySelector("#frame-"+ index + "-evil").style.display = "none";
+        }
+    }
+
+
+
+    setTimeout(state, 5000); // Attendre 1 seconde avant de relancer lâ€™appel
     })
 }
 
