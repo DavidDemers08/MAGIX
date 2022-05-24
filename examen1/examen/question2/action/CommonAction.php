@@ -37,6 +37,27 @@
 		}
 		
 		abstract protected function executeAction();
+
+		public function callAPI() {
+            $apiURL = "http:/magix.apps-de-cours.com/api/games/log/1";
+
+            $options = array(
+                'http' => array(
+                    'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                    'method'  => 'POST',
+
+                )
+            );
+            $context  = stream_context_create($options);
+            $result = file_get_contents($apiURL, false, $context);
+
+        if (strpos($result, "<br") !== false) {
+                var_dump($result);
+                exit;
+            }
+            
+        return json_decode($result);
+        }
 		
 	}
 

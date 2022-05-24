@@ -4,6 +4,7 @@
 	$action = new IndexAction();
 	$data = $action->execute();
 
+
 	$pageTitle = "Accueil";
 	require_once("partial/header.php");
 ?>
