@@ -13,3 +13,5 @@ const state = () => {
 window.addEventListener("load", () => {
 setTimeout(state, 1000); // Appel initial (attendre 1 seconde)
 });
+
+console.log("salut")
