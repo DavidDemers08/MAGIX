@@ -1,12 +1,13 @@
 const state = () => {
-    fetch("https://notes-de-cours.com/dev/exam-api", {
-        method : "POST"       
+    fetch("fantome-state.php", {   // Il faut crÃ©er cette page et son contrÃ´leur appelle 
+        method : "POST"       // lâ€™API (games/state)
     })
+.then(response => response.json())
 .then(data => {
     console.log(data);
 
     setTimeout(state, 1000); // Attendre 1 seconde avant de relancer lâ€™appel
-})
+    })
 }
 
 window.addEventListener("load", () => {
